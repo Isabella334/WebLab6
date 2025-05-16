@@ -1,0 +1,10 @@
+services:
+  db:
+    image: alpine
+    volumes:
+      - ./db:/data
+    working_dir: /data
+    entrypoint: >
+      sh -c "apk add --no-cache sqlite &&
+             sqlite3 series.db < init.sql &&
+             echo 'Done initializing DB'"
